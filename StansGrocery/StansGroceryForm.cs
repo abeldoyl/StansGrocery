@@ -17,6 +17,7 @@ namespace StansGrocery
         {
             FilterByAisleRadioButton.Checked = true;
             LoadFilterComboBox();
+            DisplayLabel.Text = "";
         }
         int CountOfLinesIn(string filePath)
         {
@@ -77,18 +78,22 @@ namespace StansGrocery
 
             var rows = new List<(int sortKey, string display)>();
 
+
             for (int row = 0; row < data.GetLength(1); row++)
             {
                 string formattedRow = "";
                 for (int column = 0; column < data.GetLength(0); column++)
                 {
-                    if (data[column, row] != null && (FilterComboBox.SelectedItem.ToString() == "~Show All~" || data[filterColumn, row] == FilterComboBox.SelectedItem.ToString()))
+                    if (data[column, row] != null && (FilterComboBox.SelectedItem.ToString() ==
+                        "~Show All~" || data[filterColumn, row]
+                        == FilterComboBox.SelectedItem.ToString()))
                     {
                         formattedRow = $"{data[0, row],-25} {data[1, row],-5} {data[2, row],-25}";
                     }
                 }
 
-                if (formattedRow != "" && formattedRow.Contains(SearchTextBox.Text, StringComparison.InvariantCultureIgnoreCase))
+                if (formattedRow != "" && formattedRow.Contains
+                    (SearchTextBox.Text, StringComparison.InvariantCultureIgnoreCase))
                 {
                     int.TryParse(data[1, row], out int aisleNum);
                     rows.Add((aisleNum, formattedRow));
@@ -116,16 +121,20 @@ namespace StansGrocery
 
             for (int row = 0; row < this.customerData.GetUpperBound(1); row++)
             {
-                if (this.customerData[column, row] != null && !FilterComboBox.Items.Contains(this.customerData[column, row]))
+                if (this.customerData[column, row] != null &&
+                    !FilterComboBox.Items.Contains(this.customerData[column, row]))
                 {
                     FilterComboBox.Items.Add(this.customerData[column, row]);
                 }
             }
 
             // Sort numerically for aisles, alphabetically for categories
-            var items = FilterByAisleRadioButton.Checked
-                ? FilterComboBox.Items.Cast<string>().OrderBy(x => int.TryParse(x, out int n) ? n : int.MaxValue).ToList()
-                : FilterComboBox.Items.Cast<string>().OrderBy(x => x).ToList();
+            List<string> items;
+            if (FilterByAisleRadioButton.Checked)
+                items = FilterComboBox.Items.Cast<string>().OrderByDescending
+                    (x => int.TryParse(x, out int n) ? n : int.MaxValue).ToList();
+            else
+                items = FilterComboBox.Items.Cast<string>().OrderBy(x => x).ToList();
 
             FilterComboBox.Items.Clear();
             FilterComboBox.Items.Add("~Show All~");
@@ -151,12 +160,48 @@ namespace StansGrocery
             DisplayData();
             if (SearchTextBox.Text.Equals("zzz", StringComparison.InvariantCultureIgnoreCase))
                 this.Close();
+            if (DisplayListBox.Items.Count == 0)
+                DisplayLabel.Text = $"Sorry no matches for {SearchTextBox.Text}";
             SearchTextBox.Text = "";
         }
 
         private void FilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             DisplayData();
+        }
+
+        private void DisplayListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (DisplayListBox.SelectedItem == null)
+            {
+                DisplayLabel.Text = "";
+                return;
+            }
+
+            // Find the selected item's data by matching the item name
+            string selectedItem = DisplayListBox.SelectedItem.ToString().Substring(0, 25).Trim();
+
+            for (int row = 0; row < customerData.GetLength(1); row++)
+            {
+                if (customerData[0, row] != null && customerData[0, row].Equals
+                    (selectedItem, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    DisplayLabel.Text = $"You will find {customerData[0, row]}" + "\n" +
+                        $"on aisle {customerData[1, row]}" + "\n" +
+                        $"with the {customerData[2, row]}";
+                    return;
+                }
+            }
+        }
+
+        private void searchToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SearchButton_Click(sender, e);
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

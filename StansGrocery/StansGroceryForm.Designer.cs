@@ -43,6 +43,7 @@
             exitToolStripMenuItem = new ToolStripMenuItem();
             helpToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
+            DisplayLabel = new Label();
             FiltersGroupBox.SuspendLayout();
             menuStrip1.SuspendLayout();
             SuspendLayout();
@@ -55,6 +56,7 @@
             DisplayListBox.Name = "DisplayListBox";
             DisplayListBox.Size = new Size(453, 404);
             DisplayListBox.TabIndex = 0;
+            DisplayListBox.SelectedIndexChanged += DisplayListBox_SelectedIndexChanged;
             // 
             // FiltersGroupBox
             // 
@@ -156,14 +158,16 @@
             // searchToolStripMenuItem
             // 
             searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            searchToolStripMenuItem.Size = new Size(109, 22);
+            searchToolStripMenuItem.Size = new Size(180, 22);
             searchToolStripMenuItem.Text = "Search";
+            searchToolStripMenuItem.Click += searchToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(109, 22);
+            exitToolStripMenuItem.Size = new Size(180, 22);
             exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // helpToolStripMenuItem
             // 
@@ -178,11 +182,21 @@
             aboutToolStripMenuItem.Size = new Size(107, 22);
             aboutToolStripMenuItem.Text = "About";
             // 
+            // DisplayLabel
+            // 
+            DisplayLabel.AutoSize = true;
+            DisplayLabel.Location = new Point(484, 313);
+            DisplayLabel.Name = "DisplayLabel";
+            DisplayLabel.Size = new Size(76, 15);
+            DisplayLabel.TabIndex = 6;
+            DisplayLabel.Text = "Display Label";
+            // 
             // StansGroceryForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(DisplayLabel);
             Controls.Add(SearchBarLabel);
             Controls.Add(SearchButton);
             Controls.Add(SearchTextBox);
@@ -217,5 +231,6 @@
         private ToolStripMenuItem exitToolStripMenuItem;
         private ToolStripMenuItem helpToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
+        private Label DisplayLabel;
     }
 }
