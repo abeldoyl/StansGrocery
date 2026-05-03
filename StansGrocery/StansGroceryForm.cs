@@ -5,8 +5,8 @@ namespace StansGrocery
         public StansGroceryForm()
         {
             InitializeComponent();
-            SetDefaults();
             FileToArray(filePath);
+            SetDefaults();
             DisplayData();
         }
 
@@ -16,6 +16,7 @@ namespace StansGrocery
         private void SetDefaults()
         {
             AisleRadioButton.Checked = true;
+            LoadFilterComboBox();
         }
         int CountOfLinesIn(string filePath)
         {
@@ -81,7 +82,7 @@ namespace StansGrocery
                 string formattedRow = "";
                 for (int column = 0; column < data.GetLength(0); column++)
                 {
-                    if (data[column, row] != null && (data[filterColumn, row] == FilterComboBox.SelectedItem.ToString() || FilterComboBox.SelectedIndex == 0))
+                    if (data[column, row] != null && (FilterComboBox.SelectedItem.ToString() == "~Select~" || data[filterColumn, row] == FilterComboBox.SelectedItem.ToString()))
                     {
                         formattedRow = $"{data[0, row],-25} {data[1, row],-5} {data[2, row],-25}";
                     }
@@ -111,28 +112,27 @@ namespace StansGrocery
                 case bool when CategoryRadioButton.Checked:
                     column = 2;
                     break;
-                    //default:
             }
 
-            for (int row = 0; (row < this.customerData.GetUpperBound(1)); row++)
+            for (int row = 0; row < this.customerData.GetUpperBound(1); row++)
             {
-                if (this.customerData[column, row] != null && FilterComboBox.Items.Contains(this.customerData[column, row]) != true)
+                if (this.customerData[column, row] != null && !FilterComboBox.Items.Contains(this.customerData[column, row]))
                 {
-
-                    FilterComboBox.Items.Add(this.customerData[column, row]); //add city 
+                    FilterComboBox.Items.Add(this.customerData[column, row]);
                 }
             }
-            FilterComboBox.Items.Add("~Select~");
-            var items = FilterComboBox.Items.Cast<string>()
-            .OrderBy(x => int.TryParse(x, out int n) ? n : int.MaxValue)
-            .ToList();
+
+            // Sort numerically for aisles, alphabetically for categories
+            var items = AisleRadioButton.Checked
+                ? FilterComboBox.Items.Cast<string>().OrderBy(x => int.TryParse(x, out int n) ? n : int.MaxValue).ToList()
+                : FilterComboBox.Items.Cast<string>().OrderBy(x => x).ToList();
 
             FilterComboBox.Items.Clear();
+            FilterComboBox.Items.Add("~Select~");
             foreach (var item in items)
                 FilterComboBox.Items.Add(item);
 
             FilterComboBox.SelectedIndex = 0;
-
         }
 
         private void AisleRadioButton_CheckedChanged(object sender, EventArgs e)
