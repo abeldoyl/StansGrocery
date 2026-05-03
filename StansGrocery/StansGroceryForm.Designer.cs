@@ -30,13 +30,13 @@
         {
             DisplayListBox = new ListBox();
             FiltersGroupBox = new GroupBox();
+            DisplayFilterLabel = new Label();
+            FilterComboBox = new ComboBox();
+            CategoryRadioButton = new RadioButton();
+            AisleRadioButton = new RadioButton();
             SearchTextBox = new TextBox();
             SearchButton = new Button();
-            AisleRadioButton = new RadioButton();
-            CatagoryRadioButton = new RadioButton();
-            FilterComboBox = new ComboBox();
             SearchBarLabel = new Label();
-            DisplayFilterLabel = new Label();
             menuStrip1 = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             searchToolStripMenuItem = new ToolStripMenuItem();
@@ -59,7 +59,7 @@
             // 
             FiltersGroupBox.Controls.Add(DisplayFilterLabel);
             FiltersGroupBox.Controls.Add(FilterComboBox);
-            FiltersGroupBox.Controls.Add(CatagoryRadioButton);
+            FiltersGroupBox.Controls.Add(CategoryRadioButton);
             FiltersGroupBox.Controls.Add(AisleRadioButton);
             FiltersGroupBox.Location = new Point(471, 25);
             FiltersGroupBox.Name = "FiltersGroupBox";
@@ -67,6 +67,45 @@
             FiltersGroupBox.TabIndex = 1;
             FiltersGroupBox.TabStop = false;
             FiltersGroupBox.Text = "Filters";
+            // 
+            // DisplayFilterLabel
+            // 
+            DisplayFilterLabel.AutoSize = true;
+            DisplayFilterLabel.Location = new Point(177, 35);
+            DisplayFilterLabel.Name = "DisplayFilterLabel";
+            DisplayFilterLabel.Size = new Size(79, 15);
+            DisplayFilterLabel.TabIndex = 3;
+            DisplayFilterLabel.Text = "Display Filters";
+            // 
+            // FilterComboBox
+            // 
+            FilterComboBox.FormattingEnabled = true;
+            FilterComboBox.Location = new Point(177, 54);
+            FilterComboBox.Name = "FilterComboBox";
+            FilterComboBox.Size = new Size(121, 23);
+            FilterComboBox.TabIndex = 2;
+            // 
+            // CategoryRadioButton
+            // 
+            CategoryRadioButton.AutoSize = true;
+            CategoryRadioButton.Location = new Point(16, 73);
+            CategoryRadioButton.Name = "CategoryRadioButton";
+            CategoryRadioButton.Size = new Size(73, 19);
+            CategoryRadioButton.TabIndex = 1;
+            CategoryRadioButton.TabStop = true;
+            CategoryRadioButton.Text = "Category";
+            CategoryRadioButton.UseVisualStyleBackColor = true;
+            // 
+            // AisleRadioButton
+            // 
+            AisleRadioButton.AutoSize = true;
+            AisleRadioButton.Location = new Point(16, 35);
+            AisleRadioButton.Name = "AisleRadioButton";
+            AisleRadioButton.Size = new Size(50, 19);
+            AisleRadioButton.TabIndex = 0;
+            AisleRadioButton.TabStop = true;
+            AisleRadioButton.Text = "Aisle";
+            AisleRadioButton.UseVisualStyleBackColor = true;
             // 
             // SearchTextBox
             // 
@@ -84,37 +123,6 @@
             SearchButton.Text = "Search";
             SearchButton.UseVisualStyleBackColor = true;
             // 
-            // AisleRadioButton
-            // 
-            AisleRadioButton.AutoSize = true;
-            AisleRadioButton.Location = new Point(16, 35);
-            AisleRadioButton.Name = "AisleRadioButton";
-            AisleRadioButton.Size = new Size(50, 19);
-            AisleRadioButton.TabIndex = 0;
-            AisleRadioButton.TabStop = true;
-            AisleRadioButton.Text = "Aisle";
-            AisleRadioButton.UseVisualStyleBackColor = true;
-            AisleRadioButton.CheckedChanged += this.AisleRadioButton_CheckedChanged;
-            // 
-            // CatagoryRadioButton
-            // 
-            CatagoryRadioButton.AutoSize = true;
-            CatagoryRadioButton.Location = new Point(16, 73);
-            CatagoryRadioButton.Name = "CatagoryRadioButton";
-            CatagoryRadioButton.Size = new Size(73, 19);
-            CatagoryRadioButton.TabIndex = 1;
-            CatagoryRadioButton.TabStop = true;
-            CatagoryRadioButton.Text = "Catagory";
-            CatagoryRadioButton.UseVisualStyleBackColor = true;
-            // 
-            // FilterComboBox
-            // 
-            FilterComboBox.FormattingEnabled = true;
-            FilterComboBox.Location = new Point(177, 54);
-            FilterComboBox.Name = "FilterComboBox";
-            FilterComboBox.Size = new Size(121, 23);
-            FilterComboBox.TabIndex = 2;
-            // 
             // SearchBarLabel
             // 
             SearchBarLabel.AutoSize = true;
@@ -123,15 +131,6 @@
             SearchBarLabel.Size = new Size(62, 15);
             SearchBarLabel.TabIndex = 4;
             SearchBarLabel.Text = "Search Bar";
-            // 
-            // DisplayFilterLabel
-            // 
-            DisplayFilterLabel.AutoSize = true;
-            DisplayFilterLabel.Location = new Point(177, 35);
-            DisplayFilterLabel.Name = "DisplayFilterLabel";
-            DisplayFilterLabel.Size = new Size(79, 15);
-            DisplayFilterLabel.TabIndex = 3;
-            DisplayFilterLabel.Text = "Display Filters";
             // 
             // menuStrip1
             // 
@@ -152,13 +151,13 @@
             // searchToolStripMenuItem
             // 
             searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            searchToolStripMenuItem.Size = new Size(180, 22);
+            searchToolStripMenuItem.Size = new Size(109, 22);
             searchToolStripMenuItem.Text = "Search";
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            exitToolStripMenuItem.Size = new Size(180, 22);
+            exitToolStripMenuItem.Size = new Size(109, 22);
             exitToolStripMenuItem.Text = "Exit";
             // 
             // helpToolStripMenuItem
@@ -171,7 +170,7 @@
             // aboutToolStripMenuItem
             // 
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(180, 22);
+            aboutToolStripMenuItem.Size = new Size(107, 22);
             aboutToolStripMenuItem.Text = "About";
             // 
             // StansGroceryForm
@@ -200,7 +199,7 @@
 
         private ListBox DisplayListBox;
         private GroupBox FiltersGroupBox;
-        private RadioButton CatagoryRadioButton;
+        private RadioButton CategoryRadioButton;
         private RadioButton AisleRadioButton;
         private TextBox SearchTextBox;
         private Button SearchButton;
