@@ -15,7 +15,7 @@ namespace StansGrocery
 
         private void SetDefaults()
         {
-            AisleRadioButton.Checked = true;
+            FilterByAisleRadioButton.Checked = true;
             LoadFilterComboBox();
         }
         int CountOfLinesIn(string filePath)
@@ -71,7 +71,7 @@ namespace StansGrocery
         void DisplayData()
         {
             string[,] data = this.customerData;
-            int filterColumn = AisleRadioButton.Checked ? 1 : 2;
+            int filterColumn = FilterByAisleRadioButton.Checked ? 1 : 2;
 
             DisplayListBox.Items.Clear();
 
@@ -82,7 +82,7 @@ namespace StansGrocery
                 string formattedRow = "";
                 for (int column = 0; column < data.GetLength(0); column++)
                 {
-                    if (data[column, row] != null && (FilterComboBox.SelectedItem.ToString() == "~Select~" || data[filterColumn, row] == FilterComboBox.SelectedItem.ToString()))
+                    if (data[column, row] != null && (FilterComboBox.SelectedItem.ToString() == "~Show All~" || data[filterColumn, row] == FilterComboBox.SelectedItem.ToString()))
                     {
                         formattedRow = $"{data[0, row],-25} {data[1, row],-5} {data[2, row],-25}";
                     }
@@ -106,10 +106,10 @@ namespace StansGrocery
 
             switch (true)
             {
-                case bool when AisleRadioButton.Checked:
+                case bool when FilterByAisleRadioButton.Checked:
                     column = 1;
                     break;
-                case bool when CategoryRadioButton.Checked:
+                case bool when FilterByCategoryRadioButton.Checked:
                     column = 2;
                     break;
             }
@@ -123,12 +123,12 @@ namespace StansGrocery
             }
 
             // Sort numerically for aisles, alphabetically for categories
-            var items = AisleRadioButton.Checked
+            var items = FilterByAisleRadioButton.Checked
                 ? FilterComboBox.Items.Cast<string>().OrderBy(x => int.TryParse(x, out int n) ? n : int.MaxValue).ToList()
                 : FilterComboBox.Items.Cast<string>().OrderBy(x => x).ToList();
 
             FilterComboBox.Items.Clear();
-            FilterComboBox.Items.Add("~Select~");
+            FilterComboBox.Items.Add("~Show All~");
             foreach (var item in items)
                 FilterComboBox.Items.Add(item);
 
@@ -149,6 +149,8 @@ namespace StansGrocery
         {
             FilterComboBox.SelectedIndex = 0;
             DisplayData();
+            if (SearchTextBox.Text.Equals("zzz", StringComparison.InvariantCultureIgnoreCase))
+                this.Close();
             SearchTextBox.Text = "";
         }
 

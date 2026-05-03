@@ -32,8 +32,8 @@
             FiltersGroupBox = new GroupBox();
             DisplayFilterLabel = new Label();
             FilterComboBox = new ComboBox();
-            CategoryRadioButton = new RadioButton();
-            AisleRadioButton = new RadioButton();
+            FilterByCategoryRadioButton = new RadioButton();
+            FilterByAisleRadioButton = new RadioButton();
             SearchTextBox = new TextBox();
             SearchButton = new Button();
             SearchBarLabel = new Label();
@@ -60,8 +60,8 @@
             // 
             FiltersGroupBox.Controls.Add(DisplayFilterLabel);
             FiltersGroupBox.Controls.Add(FilterComboBox);
-            FiltersGroupBox.Controls.Add(CategoryRadioButton);
-            FiltersGroupBox.Controls.Add(AisleRadioButton);
+            FiltersGroupBox.Controls.Add(FilterByCategoryRadioButton);
+            FiltersGroupBox.Controls.Add(FilterByAisleRadioButton);
             FiltersGroupBox.Location = new Point(471, 25);
             FiltersGroupBox.Name = "FiltersGroupBox";
             FiltersGroupBox.Size = new Size(317, 120);
@@ -87,29 +87,29 @@
             FilterComboBox.TabIndex = 2;
             FilterComboBox.SelectedIndexChanged += FilterComboBox_SelectedIndexChanged;
             // 
-            // CategoryRadioButton
+            // FilterByCategoryRadioButton
             // 
-            CategoryRadioButton.AutoSize = true;
-            CategoryRadioButton.Location = new Point(16, 73);
-            CategoryRadioButton.Name = "CategoryRadioButton";
-            CategoryRadioButton.Size = new Size(73, 19);
-            CategoryRadioButton.TabIndex = 1;
-            CategoryRadioButton.TabStop = true;
-            CategoryRadioButton.Text = "Category";
-            CategoryRadioButton.UseVisualStyleBackColor = true;
-            CategoryRadioButton.CheckedChanged += CategoryRadioButton_CheckedChanged;
+            FilterByCategoryRadioButton.AutoSize = true;
+            FilterByCategoryRadioButton.Location = new Point(16, 73);
+            FilterByCategoryRadioButton.Name = "FilterByCategoryRadioButton";
+            FilterByCategoryRadioButton.Size = new Size(73, 19);
+            FilterByCategoryRadioButton.TabIndex = 1;
+            FilterByCategoryRadioButton.TabStop = true;
+            FilterByCategoryRadioButton.Text = "Category";
+            FilterByCategoryRadioButton.UseVisualStyleBackColor = true;
+            FilterByCategoryRadioButton.CheckedChanged += CategoryRadioButton_CheckedChanged;
             // 
-            // AisleRadioButton
+            // FilterByAisleRadioButton
             // 
-            AisleRadioButton.AutoSize = true;
-            AisleRadioButton.Location = new Point(16, 35);
-            AisleRadioButton.Name = "AisleRadioButton";
-            AisleRadioButton.Size = new Size(50, 19);
-            AisleRadioButton.TabIndex = 0;
-            AisleRadioButton.TabStop = true;
-            AisleRadioButton.Text = "Aisle";
-            AisleRadioButton.UseVisualStyleBackColor = true;
-            AisleRadioButton.CheckedChanged += AisleRadioButton_CheckedChanged;
+            FilterByAisleRadioButton.AutoSize = true;
+            FilterByAisleRadioButton.Location = new Point(16, 35);
+            FilterByAisleRadioButton.Name = "FilterByAisleRadioButton";
+            FilterByAisleRadioButton.Size = new Size(50, 19);
+            FilterByAisleRadioButton.TabIndex = 0;
+            FilterByAisleRadioButton.TabStop = true;
+            FilterByAisleRadioButton.Text = "Aisle";
+            FilterByAisleRadioButton.UseVisualStyleBackColor = true;
+            FilterByAisleRadioButton.CheckedChanged += AisleRadioButton_CheckedChanged;
             // 
             // SearchTextBox
             // 
@@ -204,8 +204,8 @@
 
         private ListBox DisplayListBox;
         private GroupBox FiltersGroupBox;
-        private RadioButton CategoryRadioButton;
-        private RadioButton AisleRadioButton;
+        private RadioButton FilterByCategoryRadioButton;
+        private RadioButton FilterByAisleRadioButton;
         private TextBox SearchTextBox;
         private Button SearchButton;
         private Label DisplayFilterLabel;
