@@ -22,11 +22,8 @@ namespace StansGrocery
             int count = 0;
             using (StreamReader testFile = new StreamReader(filePath))
             {
-                do
-                {
-                    testFile.ReadLine();
+                while (testFile.ReadLine() != null)
                     count++;
-                } while (!testFile.EndOfStream);
             }
             return count;
         }
@@ -73,46 +70,32 @@ namespace StansGrocery
         void DisplayData()
         {
             string[,] data = this.customerData;
-            string formattedRow = "";
-            int filterColumn = 2;
+            int filterColumn = AisleRadioButton.Checked ? 1 : 2;
 
             DisplayListBox.Items.Clear();
 
-            switch (true)
-            {
-                case bool when CategoryRadioButton.Checked:
-                    filterColumn = 2;
-                    break;
-                case bool when AisleRadioButton.Checked:
-                    filterColumn = 1;
-                    break;
-                    //default:
-            }
+            var rows = new List<(int sortKey, string display)>();
 
             for (int row = 0; row < data.GetLength(1); row++)
             {
+                string formattedRow = "";
                 for (int column = 0; column < data.GetLength(0); column++)
                 {
                     if (data[column, row] != null && (data[filterColumn, row] == FilterComboBox.SelectedItem.ToString() || FilterComboBox.SelectedIndex == 0))
                     {
-                        // format the row for display, giving each field a fixed width for better readability
                         formattedRow = $"{data[0, row],-25} {data[1, row],-5} {data[2, row],-25}";
                     }
                 }
-                if (formattedRow != "")
+
+                if (formattedRow != "" && formattedRow.Contains(SearchTextBox.Text, StringComparison.InvariantCultureIgnoreCase))
                 {
-                    //System.String.
-                    if (formattedRow.Contains(SearchTextBox.Text, StringComparison.InvariantCultureIgnoreCase))
-                    {
-                        DisplayListBox.Items.Add(formattedRow);
-                    }
-                    else
-                    {
-
-                    }
-
+                    int.TryParse(data[1, row], out int aisleNum);
+                    rows.Add((aisleNum, formattedRow));
                 }
             }
+
+            foreach (var r in rows.OrderBy(r => r.sortKey))
+                DisplayListBox.Items.Add(r.display);
         }
 
         void LoadFilterComboBox()
@@ -140,7 +123,14 @@ namespace StansGrocery
                 }
             }
             FilterComboBox.Items.Add("~Select~");
-            FilterComboBox.Sorted = true;
+            var items = FilterComboBox.Items.Cast<string>()
+            .OrderBy(x => int.TryParse(x, out int n) ? n : int.MaxValue)
+            .ToList();
+
+            FilterComboBox.Items.Clear();
+            foreach (var item in items)
+                FilterComboBox.Items.Add(item);
+
             FilterComboBox.SelectedIndex = 0;
 
         }
@@ -160,6 +150,11 @@ namespace StansGrocery
             FilterComboBox.SelectedIndex = 0;
             DisplayData();
             SearchTextBox.Text = "";
+        }
+
+        private void FilterComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DisplayData();
         }
     }
 }

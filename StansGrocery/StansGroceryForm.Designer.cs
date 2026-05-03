@@ -85,6 +85,7 @@
             FilterComboBox.Name = "FilterComboBox";
             FilterComboBox.Size = new Size(121, 23);
             FilterComboBox.TabIndex = 2;
+            FilterComboBox.SelectedIndexChanged += FilterComboBox_SelectedIndexChanged;
             // 
             // CategoryRadioButton
             // 
