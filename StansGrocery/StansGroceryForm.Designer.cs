@@ -144,7 +144,7 @@
             menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, helpToolStripMenuItem });
             menuStrip1.Location = new Point(0, 0);
             menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(800, 24);
+            menuStrip1.Size = new Size(797, 24);
             menuStrip1.TabIndex = 5;
             menuStrip1.Text = "menuStrip1";
             // 
@@ -196,7 +196,7 @@
             AcceptButton = SearchButton;
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(797, 437);
             Controls.Add(DisplayLabel);
             Controls.Add(SearchBarLabel);
             Controls.Add(SearchButton);
@@ -206,6 +206,7 @@
             Controls.Add(menuStrip1);
             MainMenuStrip = menuStrip1;
             Name = "StansGroceryForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Stans Grocery";
             FiltersGroupBox.ResumeLayout(false);
             FiltersGroupBox.PerformLayout();

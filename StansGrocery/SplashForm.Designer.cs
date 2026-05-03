@@ -39,7 +39,7 @@
             MainPictureBox.BackgroundImageLayout = ImageLayout.Stretch;
             MainPictureBox.Location = new Point(-7, -29);
             MainPictureBox.Name = "MainPictureBox";
-            MainPictureBox.Size = new Size(814, 486);
+            MainPictureBox.Size = new Size(844, 531);
             MainPictureBox.TabIndex = 0;
             MainPictureBox.TabStop = false;
             // 
@@ -47,11 +47,12 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(833, 501);
             ControlBox = false;
             Controls.Add(MainPictureBox);
             FormBorderStyle = FormBorderStyle.None;
             Name = "SplashForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "SplashForm";
             TopMost = true;
             ((System.ComponentModel.ISupportInitialize)MainPictureBox).EndInit();

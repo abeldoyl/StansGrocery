@@ -4,6 +4,7 @@ namespace StansGrocery
     {
         public StansGroceryForm()
         {
+            ShowSplashForm();
             InitializeComponent();
             FileToArray(filePath);
             SetDefaults();
@@ -142,6 +143,19 @@ namespace StansGrocery
                 FilterComboBox.Items.Add(item);
 
             FilterComboBox.SelectedIndex = 0;
+        }
+        private void ShowSplashForm()
+        {
+            SplashForm splashForm = new SplashForm();
+            splashForm.Show();
+            System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+            timer.Interval = 3000; // 3 seconds
+            timer.Tick += (s, e) =>
+            {
+                timer.Stop();
+                splashForm.Close();
+            };
+            timer.Start();
         }
 
         private void AisleRadioButton_CheckedChanged(object sender, EventArgs e)
