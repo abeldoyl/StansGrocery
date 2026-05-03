@@ -1,3 +1,10 @@
+/*
+Abel Doyle
+RCET 2265
+Spring Semester 2026
+StansGrocery
+https://github.com/abeldoyl/StansGrocery.git
+*/
 namespace StansGrocery
 {
     public partial class StansGroceryForm : Form
@@ -10,6 +17,8 @@ namespace StansGrocery
             SetDefaults();
             DisplayData();
         }
+
+        // Custom Methods Below -------------------------------------------------------------------
 
         string[,] customerData = new string[0, 0];
         string filePath = "..\\..\\..\\..\\Grocery.txt";
@@ -148,6 +157,7 @@ namespace StansGrocery
         {
             SplashForm splashForm = new SplashForm();
             splashForm.Show();
+            //Show SplashForm for 3 seconds then close
             System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
             timer.Interval = 3000; // 3 seconds
             timer.Tick += (s, e) =>
@@ -157,6 +167,8 @@ namespace StansGrocery
             };
             timer.Start();
         }
+
+        // Event Handlers Below -------------------------------------------------------------------
 
         private void AisleRadioButton_CheckedChanged(object sender, EventArgs e)
         {
