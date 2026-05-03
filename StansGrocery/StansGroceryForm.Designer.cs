@@ -37,7 +37,7 @@
             SearchTextBox = new TextBox();
             SearchButton = new Button();
             SearchBarLabel = new Label();
-            menuStrip1 = new MenuStrip();
+            TopMenuStrip = new MenuStrip();
             fileToolStripMenuItem = new ToolStripMenuItem();
             searchToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
@@ -45,7 +45,7 @@
             aboutToolStripMenuItem = new ToolStripMenuItem();
             DisplayLabel = new Label();
             FiltersGroupBox.SuspendLayout();
-            menuStrip1.SuspendLayout();
+            TopMenuStrip.SuspendLayout();
             SuspendLayout();
             // 
             // DisplayListBox
@@ -139,14 +139,14 @@
             SearchBarLabel.TabIndex = 4;
             SearchBarLabel.Text = "Search Bar";
             // 
-            // menuStrip1
+            // TopMenuStrip
             // 
-            menuStrip1.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, helpToolStripMenuItem });
-            menuStrip1.Location = new Point(0, 0);
-            menuStrip1.Name = "menuStrip1";
-            menuStrip1.Size = new Size(797, 24);
-            menuStrip1.TabIndex = 5;
-            menuStrip1.Text = "menuStrip1";
+            TopMenuStrip.Items.AddRange(new ToolStripItem[] { fileToolStripMenuItem, helpToolStripMenuItem });
+            TopMenuStrip.Location = new Point(0, 0);
+            TopMenuStrip.Name = "TopMenuStrip";
+            TopMenuStrip.Size = new Size(797, 24);
+            TopMenuStrip.TabIndex = 5;
+            TopMenuStrip.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
@@ -179,7 +179,7 @@
             // aboutToolStripMenuItem
             // 
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(107, 22);
+            aboutToolStripMenuItem.Size = new Size(180, 22);
             aboutToolStripMenuItem.Text = "About";
             // 
             // DisplayLabel
@@ -203,15 +203,15 @@
             Controls.Add(SearchTextBox);
             Controls.Add(FiltersGroupBox);
             Controls.Add(DisplayListBox);
-            Controls.Add(menuStrip1);
-            MainMenuStrip = menuStrip1;
+            Controls.Add(TopMenuStrip);
+            MainMenuStrip = TopMenuStrip;
             Name = "StansGroceryForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Stans Grocery";
             FiltersGroupBox.ResumeLayout(false);
             FiltersGroupBox.PerformLayout();
-            menuStrip1.ResumeLayout(false);
-            menuStrip1.PerformLayout();
+            TopMenuStrip.ResumeLayout(false);
+            TopMenuStrip.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -227,7 +227,7 @@
         private Label DisplayFilterLabel;
         private ComboBox FilterComboBox;
         private Label SearchBarLabel;
-        private MenuStrip menuStrip1;
+        private MenuStrip TopMenuStrip;
         private ToolStripMenuItem fileToolStripMenuItem;
         private ToolStripMenuItem searchToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
