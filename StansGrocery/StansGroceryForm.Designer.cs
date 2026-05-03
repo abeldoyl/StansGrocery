@@ -49,10 +49,11 @@
             // 
             // DisplayListBox
             // 
+            DisplayListBox.Font = new Font("Source Code Pro", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             DisplayListBox.FormattingEnabled = true;
             DisplayListBox.Location = new Point(12, 25);
             DisplayListBox.Name = "DisplayListBox";
-            DisplayListBox.Size = new Size(453, 409);
+            DisplayListBox.Size = new Size(453, 404);
             DisplayListBox.TabIndex = 0;
             // 
             // FiltersGroupBox
@@ -95,6 +96,7 @@
             CategoryRadioButton.TabStop = true;
             CategoryRadioButton.Text = "Category";
             CategoryRadioButton.UseVisualStyleBackColor = true;
+            CategoryRadioButton.CheckedChanged += CategoryRadioButton_CheckedChanged;
             // 
             // AisleRadioButton
             // 
@@ -106,6 +108,7 @@
             AisleRadioButton.TabStop = true;
             AisleRadioButton.Text = "Aisle";
             AisleRadioButton.UseVisualStyleBackColor = true;
+            AisleRadioButton.CheckedChanged += AisleRadioButton_CheckedChanged;
             // 
             // SearchTextBox
             // 
@@ -122,6 +125,7 @@
             SearchButton.TabIndex = 3;
             SearchButton.Text = "Search";
             SearchButton.UseVisualStyleBackColor = true;
+            SearchButton.Click += SearchButton_Click;
             // 
             // SearchBarLabel
             // 

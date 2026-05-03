@@ -5,13 +5,18 @@ namespace StansGrocery
         public StansGroceryForm()
         {
             InitializeComponent();
+            SetDefaults();
             FileToArray(filePath);
             DisplayData();
         }
 
         string[,] customerData = new string[0, 0];
-        string filePath = "..\\..\\..\\Grocery.txt";
+        string filePath = "..\\..\\..\\..\\Grocery.txt";
 
+        private void SetDefaults()
+        {
+            AisleRadioButton.Checked = true;
+        }
         int CountOfLinesIn(string filePath)
         {
             int count = 0;
@@ -101,9 +106,60 @@ namespace StansGrocery
                     {
                         DisplayListBox.Items.Add(formattedRow);
                     }
+                    else
+                    {
+
+                    }
 
                 }
             }
+        }
+
+        void LoadFilterComboBox()
+        {
+            int column = 1;
+            FilterComboBox.Items.Clear();
+
+            switch (true)
+            {
+                case bool when AisleRadioButton.Checked:
+                    column = 1;
+                    break;
+                case bool when CategoryRadioButton.Checked:
+                    column = 2;
+                    break;
+                    //default:
+            }
+
+            for (int row = 0; (row < this.customerData.GetUpperBound(1)); row++)
+            {
+                if (this.customerData[column, row] != null && FilterComboBox.Items.Contains(this.customerData[column, row]) != true)
+                {
+
+                    FilterComboBox.Items.Add(this.customerData[column, row]); //add city 
+                }
+            }
+            FilterComboBox.Items.Add("~Select~");
+            FilterComboBox.Sorted = true;
+            FilterComboBox.SelectedIndex = 0;
+
+        }
+
+        private void AisleRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadFilterComboBox();
+        }
+
+        private void CategoryRadioButton_CheckedChanged(object sender, EventArgs e)
+        {
+            LoadFilterComboBox();
+        }
+
+        private void SearchButton_Click(object sender, EventArgs e)
+        {
+            FilterComboBox.SelectedIndex = 0;
+            DisplayData();
+            SearchTextBox.Text = "";
         }
     }
 }
